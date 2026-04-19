@@ -203,15 +203,13 @@ Before pushing a release:
 GitHub workflows in `.github/workflows/` provide:
 
 - Maven `verify` on push and pull request
-- package publishing to GitHub Packages on `main` / `master`
+- package publishing to GitHub Packages on `master`
+- package publishing to GitVerse Maven Registry on `master`
 - Javadoc publishing to GitHub Pages
 
-GitVerse workflows in `.gitverse/workflows/` provide:
+GitVerse is used as a git mirror and Maven registry target, while CI/CD is driven from GitHub Actions.
 
-- Maven `verify` on push and pull request
-- Maven `deploy` to GitVerse Package Registry on `main` / `master`
-
-Required secrets:
+Required secrets in GitHub:
 
 - GitHub Packages uses the built-in `GITHUB_TOKEN`
 - GitVerse publishing expects repository secret `GITVERSE_MAVEN_TOKEN`
