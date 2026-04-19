@@ -10,8 +10,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Generates the Java runtime codec source for one analyzed DTO.
+ *
+ * <p>The produced class implements {@code GeneratedCodec<T>} and contains all
+ * encode/decode logic inline as plain Java source. Field handles, constructor
+ * accessors, nested decode helpers, fixed-size layout computation, and
+ * variable-length helpers are emitted into the resulting source so runtime work
+ * after class initialization stays small and predictable.</p>
+ */
 public final class SbeCodecGenerator {
 
+    /**
+     * Generates one Java source file containing the codec implementation for
+     * the provided DTO specification.
+     */
     public String generate(final TypeSpec spec, final String packageName) {
         final String simpleName = Naming.codecSimpleName(spec.javaType());
         final StringBuilder source = new StringBuilder();
@@ -70,6 +83,10 @@ public final class SbeCodecGenerator {
         return source.toString();
     }
 
+    /**
+     * Emits {@link java.lang.invoke.VarHandle} declarations for every field
+     * reachable from the root specification.
+     */
     private void emitFieldHandles(final StringBuilder source, final TypeSpec spec) {
         emitFieldHandlesRecursive(source, spec);
         source.append('\n');
@@ -125,6 +142,9 @@ public final class SbeCodecGenerator {
         }
     }
 
+    /**
+     * Emits fixed-layout encoding code for one DTO instance.
+     */
     private void emitFixedEncode(
             final StringBuilder source,
             final TypeSpec spec,
@@ -293,6 +313,10 @@ public final class SbeCodecGenerator {
         return cursor;
     }
 
+    /**
+     * Emits decode logic for the supplied DTO, including reconstruction of
+     * variable-length members and nested composites.
+     */
     private void emitDecode(
             final StringBuilder source,
             final TypeSpec spec,
@@ -470,6 +494,9 @@ public final class SbeCodecGenerator {
         return cursor;
     }
 
+    /**
+     * Emits utility helpers bundled into every generated codec source.
+     */
     private void emitHelpers(final StringBuilder source, final TypeSpec spec) {
         source.append("    private static int measureString(String value) {\n");
         source.append("        return 4 + (value == null ? 0 : value.getBytes(StandardCharsets.UTF_8).length);\n");
@@ -588,6 +615,12 @@ public final class SbeCodecGenerator {
         return "value_" + field.name();
     }
 
+    /**
+     * Computes the number of bytes occupied by the fixed section of the DTO.
+     *
+     * <p>This excludes top-level variable-length strings and byte arrays, which
+     * are encoded after the fixed block.</p>
+     */
     private int fixedSize(final TypeSpec spec) {
         int size = 0;
         for (final FieldSpec field : spec.fields()) {

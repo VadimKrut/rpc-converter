@@ -1,5 +1,8 @@
 package ru.pathcreator.pyc.rpc.converter.core.model;
 
+/**
+ * Canonical field categories understood by the planner and generators.
+ */
 public enum FieldKind {
     PRIMITIVE,
     BOXED_PRIMITIVE,

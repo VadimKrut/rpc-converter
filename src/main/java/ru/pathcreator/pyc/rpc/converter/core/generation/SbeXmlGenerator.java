@@ -7,8 +7,19 @@ import ru.pathcreator.pyc.rpc.converter.core.model.TypeSpec;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Renders an SBE XML schema for one analyzed DTO root.
+ *
+ * <p>The generated schema mirrors the subset supported by the internal planner:
+ * fixed-size primitive fields are emitted as normal SBE fields, top-level
+ * variable-length values are emitted as {@code <data>} entries, and boxed or
+ * nullable values are represented through generated wrapper composites.</p>
+ */
 public final class SbeXmlGenerator {
 
+    /**
+     * Generates the XML schema text for the supplied root specification.
+     */
     public String generate(final TypeSpec spec) {
         StringBuilder builder = new StringBuilder();
         builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
@@ -64,6 +75,9 @@ public final class SbeXmlGenerator {
         return builder.toString();
     }
 
+    /**
+     * Emits reusable wrapper composites for nullable values.
+     */
     private void emitNullableWrappers(
             final StringBuilder builder,
             final TypeSpec spec,
@@ -101,6 +115,9 @@ public final class SbeXmlGenerator {
         }
     }
 
+    /**
+     * Emits nested fixed-size composites used inline by the root message.
+     */
     private void emitNestedComposites(final StringBuilder builder, final TypeSpec spec, final Set<Class<?>> visited) {
         for (FieldSpec field : spec.fields()) {
             if (field.kind() != FieldKind.NESTED_FIXED || field.nestedType() == null) {
@@ -142,6 +159,9 @@ public final class SbeXmlGenerator {
         }
     }
 
+    /**
+     * Resolves the effective XML type reference used by a message field.
+     */
     private String xmlType(final FieldSpec field) {
         return switch (field.kind()) {
             case BOOLEAN -> "uint8";
@@ -207,6 +227,10 @@ public final class SbeXmlGenerator {
         return "int32";
     }
 
+    /**
+     * Converts boxed numeric types to their primitive counterpart when a helper
+     * method needs primitive sizing or naming rules.
+     */
     private Class<?> unbox(final Class<?> boxed) {
         if (boxed == Byte.class) return byte.class;
         if (boxed == Short.class) return short.class;

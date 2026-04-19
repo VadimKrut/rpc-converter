@@ -6,10 +6,25 @@ import ru.pathcreator.pyc.rpc.converter.core.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Chooses the generation strategy for one root DTO.
+ *
+ * <p>The planner sits between raw reflection and source generation. It takes
+ * the normalized model produced by {@link DtoIntrospector}, validates the
+ * graph against the subset supported by this project, and either approves SBE
+ * generation or returns a failure result with human-readable reasons.</p>
+ */
 public final class StrategyPlanner {
 
     private final DtoIntrospector introspector = new DtoIntrospector();
 
+    /**
+     * Produces a generation decision for the supplied root DTO.
+     *
+     * @param rootType root DTO type
+     * @return analysis result describing selected strategy and validation
+     * problems, if any
+     */
     public AnalysisResult plan(final Class<?> rootType) {
         final RpcSbe annotation = rootType.getAnnotation(RpcSbe.class);
         if (annotation == null) {
@@ -29,6 +44,9 @@ public final class StrategyPlanner {
         return new AnalysisResult(rootType, rootSpec, AnalysisStrategy.FAIL, List.copyOf(problems));
     }
 
+    /**
+     * Validates whether a type can be represented by the current SBE generator.
+     */
     private boolean isSbeCompatible(final TypeSpec spec, final boolean root, final List<String> problems) {
         if (spec.instantiationStyle() == InstantiationStyle.UNSUPPORTED_FOR_SBE) {
             problems.add("SBE decode requires a record or a no-args constructor: " + spec.javaType().getName());
@@ -56,6 +74,9 @@ public final class StrategyPlanner {
         return compatible;
     }
 
+    /**
+     * Validates semantic use of {@code @RpcFixedLength}.
+     */
     private boolean validateFixedLengthUsage(final FieldSpec field, final List<String> problems) {
         if (field.fixedLength() == null) {
             return true;
@@ -78,6 +99,9 @@ public final class StrategyPlanner {
         return true;
     }
 
+    /**
+     * Ensures a nested inline composite contains only fixed-size members.
+     */
     private boolean isFixedOnly(final TypeSpec spec, final List<String> problems, final String path) {
         boolean compatible = true;
         for (final FieldSpec field : spec.fields()) {

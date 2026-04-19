@@ -5,8 +5,19 @@ import ru.pathcreator.pyc.rpc.converter.core.model.AnalysisStrategy;
 
 import java.util.List;
 
+/**
+ * Generates the factory class that exposes all codecs produced in one plugin
+ * invocation through the runtime service interface.
+ */
 public final class RegistryGenerator {
 
+    /**
+     * Generates the implementation of {@code GeneratedCodecFactory}.
+     *
+     * @param packageName package of the generated factory and codec classes
+     * @param results     analysis results for the current batch
+     * @return Java source code of the generated factory
+     */
     public String generateFactory(
             final String packageName,
             final List<AnalysisResult> results
