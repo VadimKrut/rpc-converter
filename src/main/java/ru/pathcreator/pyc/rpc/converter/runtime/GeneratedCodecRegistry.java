@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.runtime;
+package ru.pathcreator.pyc.rpc.converter.runtime;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;

@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.maven;
+package ru.pathcreator.pyc.rpc.converter.maven;
 
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.AbstractMojo;

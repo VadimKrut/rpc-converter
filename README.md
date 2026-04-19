@@ -1,4 +1,4 @@
-﻿# rpc-converter
+# rpc-converter
 
 `rpc-converter` is a Maven plugin that discovers DTO classes annotated with `@RpcSbe`,
 analyzes whether they can be represented as strict SBE messages, and generates:

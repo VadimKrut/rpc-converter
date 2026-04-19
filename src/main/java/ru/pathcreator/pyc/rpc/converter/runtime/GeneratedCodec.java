@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.runtime;
+package ru.pathcreator.pyc.rpc.converter.runtime;
 
 /**
  * Runtime contract implemented by generated codecs.

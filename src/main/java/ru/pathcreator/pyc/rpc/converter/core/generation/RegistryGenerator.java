@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.generation;
+package ru.pathcreator.pyc.rpc.converter.core.generation;
 
 import ru.pathcreator.pyc.rpc.converter.core.model.AnalysisResult;
 import ru.pathcreator.pyc.rpc.converter.core.model.AnalysisStrategy;

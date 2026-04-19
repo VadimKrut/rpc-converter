@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.annotations;
+package ru.pathcreator.pyc.rpc.converter.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

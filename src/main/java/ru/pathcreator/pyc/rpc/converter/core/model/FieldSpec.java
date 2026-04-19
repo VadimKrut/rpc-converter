@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.model;
+package ru.pathcreator.pyc.rpc.converter.core.model;
 
 import java.lang.reflect.Field;
 

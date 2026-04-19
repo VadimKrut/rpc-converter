@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.analysis;
+package ru.pathcreator.pyc.rpc.converter.core.analysis;
 
 import org.junit.jupiter.api.Test;
 import ru.pathcreator.pyc.rpc.converter.annotations.RpcFieldOrder;

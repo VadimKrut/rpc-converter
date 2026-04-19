@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.runtime;
+package ru.pathcreator.pyc.rpc.converter.runtime;
 
 /**
  * Thrown when a generated codec registry cannot resolve a codec for a requested DTO type.

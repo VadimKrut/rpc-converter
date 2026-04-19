@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.analysis;
+package ru.pathcreator.pyc.rpc.converter.core.analysis;
 
 import ru.pathcreator.pyc.rpc.converter.annotations.RpcSbe;
 import ru.pathcreator.pyc.rpc.converter.core.model.*;

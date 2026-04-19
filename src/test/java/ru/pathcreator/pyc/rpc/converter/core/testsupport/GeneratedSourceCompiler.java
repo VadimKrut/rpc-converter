@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.testsupport;
+package ru.pathcreator.pyc.rpc.converter.core.testsupport;
 
 import ru.pathcreator.pyc.rpc.converter.core.model.JavaSourceArtifact;
 

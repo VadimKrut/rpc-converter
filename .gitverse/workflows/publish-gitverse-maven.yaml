@@ -3,7 +3,6 @@ name: Publish to GitVerse Maven
 on:
   push:
     branches:
-      - main
       - master
   workflow_dispatch:
 

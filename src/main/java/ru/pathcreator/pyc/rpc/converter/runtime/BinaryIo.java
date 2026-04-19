@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.runtime;
+package ru.pathcreator.pyc.rpc.converter.runtime;
 
 /**
  * Little-endian byte-array helpers used by generated codecs.

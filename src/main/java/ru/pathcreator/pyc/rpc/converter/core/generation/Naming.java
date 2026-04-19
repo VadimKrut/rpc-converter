@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.generation;
+package ru.pathcreator.pyc.rpc.converter.core.generation;
 
 public final class Naming {
 

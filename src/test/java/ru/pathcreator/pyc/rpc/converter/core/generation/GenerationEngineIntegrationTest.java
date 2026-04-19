@@ -1,4 +1,4 @@
-﻿package ru.pathcreator.pyc.rpc.converter.core.generation;
+package ru.pathcreator.pyc.rpc.converter.core.generation;
 
 import org.junit.jupiter.api.Test;
 import ru.pathcreator.pyc.rpc.converter.annotations.RpcFixedLength;
