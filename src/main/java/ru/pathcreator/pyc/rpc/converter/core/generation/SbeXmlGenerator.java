@@ -25,7 +25,7 @@ public final class SbeXmlGenerator {
         builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         builder.append("<sbe:messageSchema xmlns:sbe=\"http://fixprotocol.io/2016/sbe\" package=\"")
                 .append(spec.javaType().getPackageName())
-                .append("\" id=\"1\" version=\"0\" semanticVersion=\"0.1.1\" byteOrder=\"littleEndian\">\n");
+                .append("\" id=\"1\" version=\"0\" semanticVersion=\"0.1.2\" byteOrder=\"littleEndian\">\n");
         builder.append("    <types>\n");
         builder.append("        <composite name=\"messageHeader\">\n");
         builder.append("            <type name=\"blockLength\" primitiveType=\"uint16\"/>\n");
