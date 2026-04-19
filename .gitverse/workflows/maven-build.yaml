@@ -22,5 +22,10 @@ jobs:
           java-version: '25'
           cache: maven
 
+      - name: Install Maven
+        run: |
+          apt-get update
+          apt-get -y install maven
+
       - name: Verify Maven build
         run: mvn -B verify

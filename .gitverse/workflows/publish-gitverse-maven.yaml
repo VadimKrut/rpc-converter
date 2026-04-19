@@ -21,6 +21,11 @@ jobs:
           java-version: '25'
           cache: maven
 
+      - name: Install Maven
+        run: |
+          apt-get update
+          apt-get -y install maven
+
       - name: Configure Maven settings for GitVerse
         run: |
           mkdir -p ~/.m2
