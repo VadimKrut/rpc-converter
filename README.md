@@ -60,7 +60,7 @@ Add the plugin to your build:
         <plugin>
             <groupId>ru.pathcreator.pyc</groupId>
             <artifactId>rpc-converter</artifactId>
-            <version>0.1.2</version>
+            <version>0.1.3</version>
             <executions>
                 <execution>
                     <goals>
